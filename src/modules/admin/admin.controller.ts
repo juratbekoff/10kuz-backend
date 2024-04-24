@@ -47,6 +47,8 @@ export class AdminController {
 
   @Get('getme')
   async getInfo(@Res() res: Response, @Req() req: UserRequest) {
+    console.log('test comment!');
+
     return await getAdminInfoHandler(
       res,
       req,
