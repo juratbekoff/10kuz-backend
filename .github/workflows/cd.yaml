@@ -1,0 +1,25 @@
+name: api.10k.uz / CD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Connect VPS and deploy changes
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd 10k.uz/backend/
+            git pull origin main
+            npm install
+            npx prisma db push --accept-data-loss
+            npm run build
+            pm2 restart api.10k.uz
