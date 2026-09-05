@@ -33,3 +33,6 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+
+<!-- Security scan triggered at 2026-09-05 07:25:41 -->
